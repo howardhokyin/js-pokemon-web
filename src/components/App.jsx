@@ -1,20 +1,27 @@
+import React, { useState, useEffect } from 'react';
 import Card from './Card';
 import '../index.css';
 
 function App() {
+  const pokemonURI = 'https://pokeapi.co/api/v2/pokemon/';
+  const [pokemons, setPokemons] = useState([]); // Renamed for clarity
+
+  useEffect(() => {
+    async function fetchPokemon() {
+      const response = await fetch(pokemonURI);
+      const data = await response.json();
+      setPokemons(data.results);
+    }
+    fetchPokemon();
+  }, []);
+
   return (
-    <div className="flex flex-col h-screen  bg-red-400">
-      <div className="flex-1 h-4/5 bg-yellow-300">pokemon detail</div>
-      <div className="flex-2 h-1/5 flex flex-row">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
+    <div className=" bg-red-400">
+      {pokemons.map((pokemon) => (
+        <a key={pokemon.name} className="m-3 ">
+          <Card pokemon={pokemon} />
+        </a>
+      ))}
     </div>
   );
 }
