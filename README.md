@@ -10,3 +10,7 @@ Currently, two official plugins are available:
 ## Fetch pokemon note
 
 - data.sprites.front_default
+
+## CSS tailwind
+
+- `w-32` for image default size
