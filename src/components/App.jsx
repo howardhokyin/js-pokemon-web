@@ -4,24 +4,32 @@ import '../index.css';
 
 function App() {
   const pokemonURI = 'https://pokeapi.co/api/v2/pokemon/';
-  const [pokemons, setPokemons] = useState([]); // Renamed for clarity
+  const [pokemonID, setPokemonID] = useState('');
+  const [pokemons, setPokemons] = useState([]);
 
+  //fetch data
   useEffect(() => {
-    async function fetchPokemon() {
-      const response = await fetch(pokemonURI);
-      const data = await response.json();
-      setPokemons(data.results);
+    if (pokemonID && pokemonID < 1200) {
+      async function FetchPokemon() {
+        const response = await fetch(pokemonURI + pokemonID); //with pokemon ID can fetch the pokemon
+        const data = await response.json();
+        console.log(data);
+      }
     }
-    fetchPokemon();
-  }, []);
+
+    FetchPokemon();
+  }, [pokemonID]);
+
+  const handleIDInput = (event) => {
+    setPokemonID(event.target.value);
+  };
+
+  const FetchPokemon = async () => {};
 
   return (
     <div className=" bg-red-400">
-      {pokemons.map((pokemon) => (
-        <a key={pokemon.name} className="m-3 ">
-          <Card pokemon={pokemon} />
-        </a>
-      ))}
+      <input type="text" value={pokemonID} onChange={handleIDInput} />
+      <button onClick={FetchPokemon}>OK</button>
     </div>
   );
 }

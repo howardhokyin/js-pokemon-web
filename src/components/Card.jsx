@@ -6,10 +6,7 @@ import React, { useState, useEffect } from 'react';
 const Card = ({ pokemon }) => {
   return (
     <div>
-      <div>
-        {pokemon.name}
-        {pokemon.url}
-      </div>
+      <div>{pokemon.name}</div>
     </div>
   );
 };
