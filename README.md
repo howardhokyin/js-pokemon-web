@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 ## Fetch pokemon note
 
-- data.sprites.front_default
+- data.sprites.front_default // for pokemon image from api
 
 ## Router
 
@@ -46,6 +46,19 @@ export default function App() {
 > ```
 
 - Show `<Nav/>` on every pages
+
+## Async + await
+
+- `async` is used in JS to indicate a function is an asynchronous functions.
+
+### so why we need `async`
+
+- JS is single-threaded, execute one command at a time.
+- always returns a promise.
+
+## .then()
+
+- `method` to handle the result of an asynchronous operation.
 
 ## CSS tailwind
 

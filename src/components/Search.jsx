@@ -36,7 +36,7 @@ const Search = () => {
   //fetch specific data by ID
   const FetchPokemon = async () => {
     try {
-      if (pokemonID < 1026) {
+      if (pokemonID < 100000) {
         const response = await fetch(pokemonURI + pokemonID); //with pokemon ID can fetch the pokemon
         const data = await response.json();
         const formattedName = capitalizeFirstLetter(data.name);
@@ -71,7 +71,7 @@ const Search = () => {
           value={pokemonID}
           onChange={handleIDInput}
         />
-        {pokemonID < 1025 ? (
+        {pokemonID < 100000 ? (
           <button
             className="w-1/4 text-[28px] bg-green-400"
             onClick={FetchPokemon}

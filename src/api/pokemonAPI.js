@@ -1,8 +1,13 @@
-export const pokemonAPI = async () => {
-  const pokemonURL = 'https://pokeapi.co/api/v2/pokemon/';
+export const fetchPokemonList = async (offset, limit) => {
+  const pokemonURL = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`;
 
-  fetch('pokemonURL')
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
+  try {
+    const response = await fetch(pokemonURL);
+
+    const data = await response.json();
+    return data.results;
+  } catch (e) {
+    console.log('Error: ' + e);
+    throw e;
+  }
 };
