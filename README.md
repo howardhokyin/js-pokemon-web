@@ -11,6 +11,42 @@ Currently, two official plugins are available:
 
 - data.sprites.front_default
 
+## Router
+
+- ref: <a href="https://www.w3schools.com/react/react_router.asp"> react route</a>
+
+1. Add React Router
+
+   > npm i -D react-router-dom@latest
+
+2. create multi page routes on `App.jsx`
+
+```js
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Nav />}>
+          <Route index element={<Home />} />
+          <Route path="pokedex" element={<Pokedex />} />
+          <Route path="search" element={<Search />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+> ```js
+> <Route path="/" element={<Nav />}>
+> ```
+
+- Show `<Nav/>` on every pages
+
 ## CSS tailwind
 
 - `w-32` for image default size
