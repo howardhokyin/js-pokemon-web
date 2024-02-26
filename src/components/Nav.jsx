@@ -1,12 +1,16 @@
-import React from 'react';
+import { Outlet, Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <div className="flex flex-row justify-end space-x-5 p-2 bg-teal-500 font-bold">
-      <div className="text-red-500">PokeDex</div>
-      <div>Battle</div>
-      <div>Search</div>
-    </div>
+    <>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/pokedex">Pokedex</Link>
+        <Link to="/search">Search</Link>
+      </nav>
+
+      <Outlet />
+    </>
   );
 };
 
