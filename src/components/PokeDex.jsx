@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPokemonList } from '../api/pokemonAPI'; // Ensure this path is correct
+import { fetchPokemonList } from '../api/pokemonAPI';
+import Card from './Card';
 
 const PokeDex = () => {
-  const [limit, setLimit] = useState(20);
+  const [limit, setLimit] = useState(10);
   const [offset, setOffset] = useState(0);
   const [pokemonList, setPokemonList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -11,6 +12,7 @@ const PokeDex = () => {
     fetchPokemonList(offset, limit)
       .then((data) => {
         setPokemonList(data);
+
         setIsLoading(false);
       })
       .catch((error) => {
@@ -28,31 +30,29 @@ const PokeDex = () => {
   };
 
   return (
-    <div>
+    <div className="bg-yellow-100 min-h-screen">
       <div>
         {isLoading ? (
           <div>Loading...</div>
         ) : (
-          <ul>
-            {pokemonList.map(
-              (
-                pokemon,
-                index // Using index as a key in case pokemon objects don't have unique id
-              ) => (
-                <li key={index}>{pokemon.name}</li> // Ensure your data objects have a 'name' property
-              )
-            )}
-          </ul>
+          <div className="grid grid-rows-5 grid-flow-col ">
+            {pokemonList.map((pokemon) => (
+              <button key={pokemon.name}>
+                {/* {console.log(pokemon.name)} */}
+                <Card pokemon={pokemon} />
+              </button>
+            ))}
+          </div>
         )}
       </div>
       <div className="flex flex-row space-x-3">
         {offset == 0 ? (
           <div>no pre</div>
         ) : (
-          <button onClick={() => handlePre(20)}>prev</button>
+          <button onClick={() => handlePre(10)}>&lt;</button>
         )}
         {offset <= 1025 ? (
-          <button onClick={() => handleNext(20)}>next</button>
+          <button onClick={() => handleNext(10)}>&gt;</button>
         ) : (
           <div>No next</div>
         )}

@@ -1,30 +1,25 @@
-// import Charmander from '../image/charmander.png';
-import React, { useState, useEffect } from 'react';
-// import { pokemonAPI } from '../api/pokemonAPI';
-// import Info from './Info';
+import React, { useEffect, useState } from 'react';
+import { fetchPokemonImg } from '../api/pokemonAPI';
 
-const Card = ({ pokemons }) => {
+const Card = ({ pokemon }) => {
+  const [image, setImage] = useState('');
+  const [name, setName] = useState('');
+  useEffect(() => {
+    fetchPokemonImg(pokemon.name).then((data) => {
+      setImage(data);
+      setName(pokemon.name);
+    });
+  }, []);
   return (
-    <div className="bg-blue-100">
-      <div>
-        <ul>
-          {pokemons.map((pokemon, index) => (
-            <li key={index} className="mb-1">
-              {/* Making each name clickable for further actions, like fetching more details */}
-              <button
-                onClick={() => handlePokemonClick(pokemon.url)}
-                className="text-blue-500 hover:text-blue-700"
-              >
-                {pokemon.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      {/* data.type */}
-      <div>type</div>
-      {/* data.weight */}
-      <div>weight</div> <div>height</div>
+    <div className="flex flex-row bg-yellow-300 rounded-full border-4 border-red-500 m-2 ">
+      <img
+        src={image}
+        alt=""
+        className="bg-gray-200 rounded-full border-4 border-red-300 w-32"
+      />
+      <p className="flex p-3 font-bold text-[20px] justify-center items-center">
+        {name}
+      </p>
     </div>
   );
 };
